@@ -351,3 +351,104 @@ int main()
 	}
 	return 0;
 }
+
+
+//4.16日学习和练习
+//循环语句
+////打印1-10的数字
+//#include <stdio.h>
+//int main()
+//{
+//	int i = 1;
+//	while (i <= 10)     //括号里为真（非0      ）时，即进入while循环，执行里面的语句
+//	{
+//		printf("%d\n", i);    //当语句大于等于两句时，就应该加上{} 
+//		                      //不然在该while循环下只会执行第一句
+//		i++;
+//	}
+//	return 0;
+//
+//}
+
+
+//判断continue和break的区别 
+////1.break
+//#include <stdio.h>
+//int main()
+//{
+//	int a = 0;
+//	while (a <= 6)
+//	{
+//		a++;
+//		if (3 == a)      //!!!!!!注意 若是a=3 就是赋值 应该双等号
+//			            //养成良好习惯，可以把数字放在前面
+//			break;             
+//		printf("a=%d\n", a);
+//		
+//	}                   //注意：该种形式，输出结果为1，2
+//	                    //原因是while中的break会永久终止循环，
+//	return 0;           //即break以后不会再进入while循环
+//} 
+
+//2.continue
+#include <stdio.h>
+int main()
+{
+	int i = 0;
+	while (6 >= i)
+	{
+		i++;
+		if (4==i)
+			continue;            //continue 用于中止本次循环
+		                         //在while循环中，若if中的语句为真，则continue启动
+		                        //会终止当前循环，然后再次进入while循环，
+		                         //该点与break不同！
+		printf("i=%d\n", i); 
+	}
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+//
+//
+//#include <stdio.h>
+//int main()
+//{
+//	int ch;
+//	ch = getchar();              //getchar 用来接收输入 
+//	putchar(ch);                 //putchar 用来输出 ，比printf简洁
+//	printf("\nch = % c\n", ch);  
+//	return 0;
+//}
+
+//#include <stdio.h>
+//int main()
+//{
+//	int ch = getchar();
+//	while (ch != EOF)     //EOF=end of file -> -1
+//	{                     //若输入EOF仍然不会中止运行，并且会打印出EOF
+//                        //原因是：输入EOF是三个字母，输出会依次判断然后进行打印
+//                         //ctrl+z 
+//		putchar(ch);
+//		printf("%c", ch);    //这样写代码 输入的如果不是正确值 会一直进行循环
+//	}                     
+//	return 0;
+//}
+////改进：
+//int main()
+//{
+//	int ch;
+//	while ((ch = getchar())!= EOF)  //不要忘记ch=getchar（）外的（）
+//	{                                //是判断该整体是否等于EOF
+//		putchar(ch);
+//	}
+//	return 0;
+//}
