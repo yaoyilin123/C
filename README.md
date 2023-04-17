@@ -452,3 +452,28 @@ int main()
 //	}
 //	return 0;
 //}
+
+//4.17日
+//学习了getchar函数的实际意义，能读取掉输入缓冲区的多余部分
+#include <stdio.h>
+int main()
+{
+	int ch = 0;
+	int ret = 0;
+	char assword[] = {0};
+	printf("请输入密码:>");
+	scanf_s("%c",&assword); //输入一系列东西以后，该输入只会读取数字部分
+	printf("请确认（Y/N）:>"); //其余多余部分会存储到输入缓冲区内，以等待下次输入读取
+	while((ch=getchar())!='\n')//归根最后输入的回车，也就是\n 
+	                            //该步骤运用while循环函数去除掉输入缓冲区里多余项； *重要！*
+		                        //避免了后续输入读取错误，使编程错误
+	{
+		;
+	}
+	ret = getchar();       //由于输入缓冲区内没有东西，此处系统会再次等待输入 
+	if (ret == 'Y')
+		printf("确认成功");
+	else
+		printf("确认失败");
+	return 0;
+}
