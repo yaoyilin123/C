@@ -560,8 +560,6 @@ int main()
 //    return 0;                  //do while 运用的最少
 //}
 //
-//
-//
 
 
 //练习题
