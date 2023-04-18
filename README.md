@@ -477,3 +477,125 @@ int main()
 		printf("确认失败");
 	return 0;
 }
+
+//4.18
+//此处介绍for循环
+//利用for循环打印1-10的数字
+//#include <stdio.h>
+//int main()
+//{
+//	int i;
+//	for (i=1; i <= 10; i++)   
+//      // 初始化；判断条件是否进入循环；调整
+//	 //注意  此处的初始化只是给予一个类型赋值，需要在开头把类型声明 ->int i
+//	{
+//		printf("%d ", i);
+//	}
+//	return 0;
+//}
+//break 和continue在for循环和while循环中的作用是一样的
+// break会直接终止循环并跳出，不再进行循环判断
+// continue会中止当前循环，并重新进入循环做判断
+// 
+//此处介绍一种情况下for和while的区别,例子打印1-10数字，除了5
+//1.while情况
+//#include <stdio.h>
+//int main()
+//{
+//	int i = 1;            //1.初始化
+//	while (i <= 10)       //2.做循环判断    
+//	{
+//		if (5 == i)       //3.执行循环内部
+//			continue;
+//		printf("%d ", i);
+//		i++;              //4.调整部分
+//	}                
+//	return 0;
+//}           //如此编程会造成一种情况：在if判断为真，进入if语句，continue会跳出，
+            //造成i++调整部分不会执行，使得该程序进入死循环，会一直进行判断。
+//2.for循环
+//#include <stdio.h>
+//int main()
+//{
+//    int i;               
+//    for (i = 1; i < 11; i++)
+//   //  1.初始化2.判断 4.调整
+//    {
+//        if (5 == i)                    //3.表达语句
+//            continue;                 // if为真，continue结束当前循环后，
+//        printf("%d ", i);            //会进入调整 即i++，这与上面的while循环不同
+//    }
+//    return 0;
+//}                   //for循环 是在语句结束以后，在进行调整
+
+//注意：其中for（；；）括号中，可以是空白，但是不熟练不建议使用
+ //          ↑会死循环
+ 
+
+
+//
+//#include <stdio.h>
+//int main()
+//{
+//    int a;
+//    for (a = 0; a = 0; a++)
+//        printf("1");
+//    return 0;
+//}
+
+
+
+//do while循环语句 ,例打印1-5
+//#include<stdio.h>
+//int main()
+//{
+//    int i = 1;
+//    do                          //do 后加表达语句，直接执行表达语句，最后进行循环判断
+//                                //这就意味着do while 循环必定会执行一次     
+//    {
+//        printf("i=%d\n", i);     //表达语句
+//        i++;
+//    }
+//    while (i<6);                //循环判断 ，记得while后端加分号；
+//    return 0;                  //do while 运用的最少
+//}
+//
+//
+//
+
+
+//练习题
+//1.计算n的阶乘
+//#include <stdio.h>
+//int main()
+//{
+//    int a ;
+//    int n = 0;
+//    int ret=1;
+//    printf("求n的阶乘，请输入n值：");
+//    scanf_s("%d", &n);         //该情况不考虑溢出，指数值过大
+//    for (a = 1; a <= n; a++)
+//    {
+//        ret *= a;     //等同于 ret = ret * a;
+//    }
+//    printf("输入值n的阶乘为%d ", ret);
+//    return 0;
+//}
+//
+//
+
+//2.计算1！+2！+...+10！
+//#include <stdio.h>
+//int main()
+//{
+//    int a=0;
+//    int sum = 0;
+//    int ret = 1;
+//    for (a = 1; a <= 10; a++)
+//    {
+//        ret *= a;
+//        sum += ret;           //注意：该种情况的sum和ret值不会清空~不要担心
+//    }
+//    printf("1！+2！+...+10！=%d",sum);
+//    return 0;
+//}
