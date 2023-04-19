@@ -597,3 +597,35 @@ int main()
 //    printf("1！+2！+...+10！=%d",sum);
 //    return 0;
 //}
+
+//4.19日
+//二分查找法
+//例子：在有序数组中（例，1-10）中找到x（某值）
+#include <stdio.h>
+int main()
+{
+    int k = 0;
+    int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+    int left = 0;
+    int right = sizeof(arr) / sizeof(arr[0]);      //注意sizeof
+                  //该处是right表示数组中个数 =整体size/单个size
+    printf("请输入您想查找的值：");
+    scanf_s("%d", &k);
+    //printf("%d", right); 不熟练，判断一下right是否正确
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (arr[mid] > k)
+            right = mid - 1;
+        else if (arr[mid] < k)
+            left = mid + 1;
+        else
+        {
+            printf("找到了，该值的下标为%d\n", mid);
+            break;
+        }
+    }
+    if (left > right)
+        printf("未找到\n");
+    return 0;
+}
