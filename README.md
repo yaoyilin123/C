@@ -629,3 +629,169 @@ int main()
         printf("未找到\n");
     return 0;
 }
+
+//4.20日 练习
+// 例题1：编写代码，演示多个字符从两端移动，向中间汇聚。
+//#include <stdio.h>
+//#include <string.h>
+//#include <Windows.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//    char arr1[] = "welcome to China!!!";
+//    char arr2[] = "###################";
+//    int left = 0;
+//    /*int right = sizeof arr1 / sizeof arr1[0]- 2;*///由于是字符串，其最后一位自带一个
+//     //此处的计算没有strlen简洁                                           // ‘/0’，所以需要再多减去一个
+//    int right = strlen(arr1) - 1; //strlen计算字符串长度时，不计算‘/0’所以只减一。
+//                //头文件为<string.h>
+//    while (left<=right)
+//    {
+//        arr2[left] = arr1[left];
+//        arr2[right] = arr1[right];
+//        system("cls");        //该语句的命令是清空屏幕 ->其.h为<stdlib.h>
+//        printf("%s\n", arr2);
+//        Sleep(500); //为了更加鲜明，可以在此处休息一段时间 ，单位为ms
+//                    //其头文件.h为<windows.h>
+//        left++;
+//        right--;
+//     }
+//
+//    return 0;
+//}
+//2.编写代码实现，模拟用户登录场景，并且只能输入三次密码。
+//若密码正确，则提示成功；若三次均错误，则退出程序。
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main()
+//{
+//    int i;
+//    char password[20] = {0};
+//    for (i = 0; i < 3; i++)
+//    {
+//        printf("请输入密码（三次机会）:>");
+//        scanf_s("%s",&password[20]);
+//      //  if (password == "123456")    字符串之间不能用==来判断，应用strcmp；
+//        if (strcmp(password, "123456") == 0) //strcmp即string compare 用来比较字符串
+//            //若strcmp（A，B）中两者相等，则该整体输出为0；
+//            //若A>B,则整体输出为正数；若A<B，则整体输出为负数。
+//        {
+//            printf("密码正确！\n");
+//            break;
+//        }
+//        else
+//            printf("密码错误！\n");
+//    }
+//    if (i == 3)
+//        printf("三次密码均错误，退出程序。\n");
+//    return 0;
+//}
+
+//3.例题：写代码将三个数按从大到小输出
+//#include <stdio.h>
+//int main()
+//{
+//    int a, b, c;
+//    scanf_s("%d %d %d", &a, &b, &c);
+//    if (a < b)
+//    {
+//        int tmp = a;    //搞出来个新变量去存储原来的值，免得赋值以后，以前的值没了
+//        a = b;
+//        b = tmp;
+//    }
+//    if(a<c)
+//    {
+//        int tmp = a;
+//        a = c;
+//        c = tmp;
+//    }
+//    if (b < c)
+//    {
+//        int tmp = b;
+//        b = c;
+//        c = tmp;
+//    }
+//    printf("%d %d %d", a, b, c); //那如果需要排列更多的数字咋办？？
+//    return 0;
+//}
+//4.打印1-100中3的倍数
+//#include<stdio.h>
+//int main()
+//{
+//    int i;
+//    for (i = 1;i < 101; i++)
+//    {
+//        if (0 == i % 3)       // %取模得到的为余数
+//            printf("%d  ", i);
+//    }
+//    return 0;
+//}
+//5.求最大公约数，利用（辗转相除法）。
+//#include <stdio.h>
+//int main()
+//{
+//    int m = 24;
+//    int n = 18;
+//    int r;
+//    scanf_s("%d %d", &m, &n);
+//    while ((r = m % n)!= 0) //此处括号内也可只写成m%n，即当m%n为0时，跳出循环
+//    {
+//     /*   r = m % n;*/   //直接把重复的步骤写入括号内，简洁
+//        m = n;
+//        n = r;
+//    }
+// /*   if(m%n==0)*/
+//        printf("公约数为%d", n);
+//    return 0;
+//}
+//6.打印1000-2000之间的闰年 (闰年：1.能被4整除并且不能被100整除的年份的是闰年
+//                                2.能被400整除的是闰年
+//#include <stdio.h>
+//int main()
+//{
+//    int i,count = 0;
+//
+//    printf("1000-2000之间的闰年有："); 
+//    for (i = 1000; i < 2001; i++)
+//    {
+//        if ((i % 4 == 0 && i % 100 != 0) || i % 400 == 0)//进化版本 整体再使用逻辑或
+//        {
+//            printf("%d年 ", i);
+//            count++;
+//        }
+//       /* else if(i%400==0)
+//            printf("%d年 ", i);*/
+//    } 
+//    printf("count=%d", count);
+//    return 0;
+//}
+//7.打印出100-200间的素数（质数） 利用试除法 例如13 应试除2-12的数字看其余数
+//#include <stdio.h>
+//#include <math.h>
+//int main()
+//{                              //这种情况是可以改进的
+//    int i = 0;
+//    int count = 0;
+//    /*for (i = 100; i <= 200; i++) */  //第二种优化，100-200中的偶数可以直接跳过 
+//    for (i = 101; i <= 200; i+=2)
+//    {
+//
+//        int j = 0;
+///*        for (j = 2; j < i; j++) */   //第一种优化，j没有必要到i，循环到根号i即可
+//        for (j = 2; j <= sqrt(i); j++)             //或者到i/2即可，    i/2=>根号i
+//        {                              //sqrt() 为开平方的数学库函数，
+//            if (i % j == 0)           //即头文件为<math.h>
+//                break;
+//        }
+//       /* if (j == i)*/       // 若上述循环条件不一样了，此处也需要改变
+//        if(j > sqrt(i))      //与上端的小于等于相反
+//        {
+//            count++;
+//            printf("%d  ", i);
+//        }
+//    }
+//    printf("\ncount=%d\n", count);
+//    return 0;
+//}          
