@@ -867,3 +867,58 @@ int main()
 //	}
 //	return 0;
 //}
+//4.22日 
+//写一个猜1-100之间数字的游戏，可以重复玩，当猜大了会提示猜大了，猜小同理。
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+int game()
+{
+	//printf("猜数字游戏\n");
+	//1.生成随机数
+	/*srand((unsigned int)time(NULL));*/ //若srand命令起始值在该位置，就会随着时间走
+	int input = 0;                        //各值离得很近，并不是随机
+	int ret = rand()%101;      //在rand之前应该先使用srand,不然起始值都是一样的
+	 //rand模101余数肯定是1-100；同理，rand%100+1也可   //随机值的大小是0-3万多
+	//printf("ret=%d", ret);
+	//2.猜数循环
+	while (1)
+	{
+		printf("请猜数字:>");
+		scanf_s("%d", &input);
+		if (input > ret)
+		printf("猜大了\n");
+		else if(input<ret)
+			printf("猜小了\n");
+		else
+		{
+			printf("猜对了\n");
+			break;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	int i = 0;
+	srand((unsigned int)time(NULL));     //尽量srand只使用一次，放到main中即可
+	while (1)
+	{
+		printf("############################\n");
+		printf("#######1.paly  0.exit#######\n");
+		printf("############################\n");
+		printf("请输入：");
+		scanf_s("%d", &i);
+		if (i == 1)
+			game();
+		else if (i == 0)
+		{
+			printf("退出程序\n");
+			break;
+		}
+		else
+			printf("输入错误，请重新输入(1/0)\n");
+     }
+
+	return 0;
+}
