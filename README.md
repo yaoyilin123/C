@@ -922,3 +922,174 @@ int main()
 
 	return 0;
 }
+
+//4.23日学习
+//1.goto语句 
+//#include <stdio.h>
+//int main()
+//{
+//	again:
+//	printf("haha\n"); 
+//	goto again;      //该情况goto会直接循环到again的地方并且一直循环。
+//	return 0;       //但是感觉用处不如其他几种循环
+//}
+//在多种嵌套下，适用于goto语句
+//#include <stdio.h>
+//int main()
+//{
+//	for(1)
+//		for(1)
+//			for ()
+//			{
+//				if (error)
+//					goto adjust;   //在该种情况下，若想即使跳出几个嵌套的循环，
+//			}                    //最好用goto语句，如果用break，需要多次使用，
+//                           //还需要注意条件，防止出错。goto更简洁
+//adjust:
+//	....
+//	return 0;
+//}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#define _CRT_SECURE_NO_WARNINGS
+//#pragma warning(disable:4996)
+//int main()
+//{
+//	char arr[20] = { 0 };
+//	system("shutdown /s /t 60");
+//	again:
+//	printf("请注意您的电脑将会在一分钟后关机，若输入我是猪，就会取消关机\n请输入:>");
+//	scanf("%s", arr,20);
+//	if (strcmp(arr, "我是猪") == 0)
+//	{
+//		system("shutdown /a");
+//	}
+//	else
+//		goto again;
+//	return 0;
+//}
+//#include <stdio.h>
+//int main()
+//{
+//	int i = 0;
+//	for ( i = 0; i < 3; i++)
+//	{
+//		if (i == 2)
+//			break;  //break之后 不会进入调整部分。
+//	}
+//	printf("i=%d", i);
+//	return 0;
+//}
+//#include <stdio.h>
+//#include <string.h>
+//int main()
+//{
+//	char arr[] = "hello world"; //把hello换成*
+//
+//	memset(arr,'*', 5);
+//	printf("%s", arr);
+//	return 0;
+//}          //注意学习库函数如何在网站上查找使用，工作会需要。
+//自定义函数
+//1.寻找两个数中较大的值
+//#include <stdio.h>
+////定义函数
+//int get_max(int x, int y)
+//{
+//	return (x > y ? x : y);
+//	//if (x > y)
+//	//	return x;
+//	//else
+//	//	return y;
+//}
+//int main()
+//{
+//	int a = 20;
+//	int b = 20;
+//	scanf("%d %d", &a, &b);
+//	//使用函数get_max 自定义函数
+//	int max=get_max(a, b);
+//	printf("较大值为%d", max);
+//	return 0;
+//}
+// 学习：指针变量
+//#include <stdio.h>
+//int main()
+//{
+//	int a = 0;          //创建一个新的int类型
+//	int* place= &a;     //&a是对a寻址，然后用int* 去存储其地址。此时place叫指针变量
+//	*place = 10;        //*为解引用符号。当*后跟随指针变量时，也就是寻着该地址去找到 
+//	printf("a=%d", a);    //其对应的变量a，此时我寻址后赋了值，打印后会出现a=10
+//	return 0;
+//}
+// 
+//2.写一个函数交换两个函数的内容
+//#include <stdio.h>
+//void change1(int x, int y)  //是不能完成任务的 //void 表示该函数没有返回值。
+//{                     //原因：当实参传给形参式，形参其实是实参的一份临时拷贝，
+//	int tmp = x;       //会重新创建空间进行操作，对形参的修改不会影响实参。
+//	x = y;
+//	y = tmp;          //这种情况下，x y会独立申请新的空间去运行函数，与主函数中
+//                     //中的ab无关，不会根据指令改变他们的值
+//}    // change1是传值调用，形参和实参分别占有不同的内存块，对形参修改不影响实参
+//
+//void change2(int* x, int* y) //而2中实参传过去的是地址，自定义函数根据地址寻到a，b
+//{                         //x，y是指针变量，分别存放着a,b的地址
+//	int tmp = *x;
+//	*x = *y;
+//	*y = tmp;           //change2是传址调用
+//}
+//int main()
+//{
+//	int a, b;
+//	scanf("%d %d", &a, &b);
+//	printf("a=%d b=%d\n", a, b);
+//	//change1(a, b);
+//	change2(&a, &b);
+//	printf("a=%d b=%d\n", a, b);
+//	return 0;
+//}
+//3.练习:写一个函数判断一个数是否为素数
+//1.100-200的素数
+//#include <stdio.h>
+//int is_prime(int x)
+//{ 
+//	int a = 0;
+//	for (a = 2; a <= x / 2; a++)      //运用开平方函数sqrt（数）也可以 
+//	{                                //记得引用头文件 ，<math.h>
+//		if (x % a == 0)              
+//			return 0;    //在此处直接return0，直接终止，这样从for循环出去的只有
+//	}                   //不符合循环条件的数值，那么该数值也就是素数
+//	return 1;      
+//	//int a = 0;
+//	//for (a = 2; a <= x/2; a++)
+//	//{
+//	//	if (x % a == 0)
+//	//		break;              //该方法还可以优化
+//	//	else
+//	//		;
+//	//}     
+//	//if (a>x/2)
+//	//{
+//	//	return 1;
+//	//}
+//	//else
+//	//	return 0;  
+//}
+//int main()
+//{
+//	int count = 0;
+//	int i = 0;
+//	for (i = 100; i <= 200; i++)
+//	{
+//		//判断i是否为素数
+//		if (is_prime(i) == 1)
+//		{
+//			printf("%d ", i);
+//			count++;
+//		}
+//	}
+//	printf("\ncount=%d", count);
+//	return 0;
+//}
