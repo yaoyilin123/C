@@ -33,7 +33,6 @@
 //}
 
 
-
 #define _CRT_SECURE_NO_WARNINGS
 //#include <stdio.h>
 //#include <string.h>  
@@ -57,7 +56,6 @@
 //			return 0;
 //}
 
-//
 //
 //#include <stdio.h>
 //int main()
@@ -100,13 +98,7 @@
 //	return 0;
 //}
 //
-//
 
-
-
-//
-//
-//
 //
 //#include <stdio.h>
 //int main()
@@ -144,11 +136,6 @@
 //	}
 //	return 0;
 //}
-
-
-
-
-
 
 //
 ////1.判断一个数是否为奇数
@@ -196,7 +183,6 @@
 //	return 0;
 //}
 //
-
 
 
 ////switch语句  用于多分支的情况 例如
@@ -410,14 +396,6 @@ int main()
 }
 
 
-
-
-
-
-
-
-
-//
 //
 //#include <stdio.h>
 //int main()
@@ -531,7 +509,6 @@ int main()
 //注意：其中for（；；）括号中，可以是空白，但是不熟练不建议使用
  //          ↑会死循环
  
-
 
 //
 //#include <stdio.h>
