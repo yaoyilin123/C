@@ -1070,3 +1070,125 @@ int main()
 //	printf("\ncount=%d", count);
 //	return 0;
 //}
+
+//4.24学习
+//自定义函数 练习题1：写一个函数判断一年是不是闰年。
+//例如1000-2000年： 能被4整除又不能被100整除的是闰年或者能被400整除的是闰年
+//#include <stdio.h>
+//int judge(int n)
+//{
+//	if (((n % 4 == 0) && (n % 100 != 0)) || (n % 400 == 0))
+//		return 1;
+//	else                   //打印应放在主函数中，这样能保证自定义函数的简洁单一
+//		return 0;          //在别人使用时，也会方便，避免多余不需要的功能。
+//}                     // 可复制性！
+//int main()
+//{
+//	int year = 0;
+//	int count = 0;
+//	for (year = 1000; year <= 2000; year++)
+//	{
+//		int i =judge(year);
+//		if (i == 1)
+//		{
+//			printf("%d ", year);
+//			count++;
+//		}
+//	}	
+//	printf("\ncount=%d", count);
+//	return 0;
+//}
+//练习题2：写一个函数，实现有序数组的二分查找。
+//例如有序数组为1-10
+//#include <stdio.h>
+//#include <string.h>    //       实际上此处y是指针，因为主函数中传递过来的值是地址
+//int search            (int x,int y[],int sz) //形参和实参的名字是一样的也没关系，不影响
+//{
+//	int left, right;
+//	//int sz = sizeof(y) / sizeof(y[0]); 此处不能使用
+//	for (left=0,right=sz-1; left <= right;)
+//	{
+//		int mid = (left + right) / 2;
+//		if (y[mid] > x)        //自己的理解：由于数组中各数字的地址是连续的，
+//			right=mid-1;      //所以传过来一个地址就可以根据下标再搜寻其他位置的。
+//		else if (y[mid] < x)
+//	     	left=mid+1;
+//		else
+//		{
+//			return mid;
+//		}
+//	}
+//	////if (left > right) 多余，因为只有不满足循环的时候才会跳出，如果找到了直接结束了
+//		return -1;
+//}
+//int main()
+//{
+//	int i=6;
+//	int arr[] = {1,2,3,4,5,6,7,8,9,10};
+//	int sz = sizeof(arr) / sizeof(arr[0]); //由于自定义函数内部不能计算大小
+//	//scanf("%d", &i);                      //那就自己在主函数内计算。
+//	     // 注意，此处arr传递过去的只是数组中第一个数字的地址，
+//	//如果所有的数字都传递过去的话，拷贝一份占用的内存可能会过于大。
+//	int ret=search(i,arr,sz);//二分查找函数，如果找到了返回这个数值的下标，如果没找到就返回-1.
+//	if (ret == -1)  
+//		printf("找不到\n");
+//	else
+//		printf("找到了，下标是%d\n", ret);
+//	return 0;
+//}
+//练习题3：写一个函数，每调用一次这个函数，就会将num的值增加1.
+//想法：自定义函数，利用传址，改变实参的大小。
+//#include <stdio.h>
+//void Add(int* x)
+//{
+//	/**x++;*/ //注意，++的优先级较高，会给p++，如果想寻址然后给实参增加，应该加上括号
+//	(*x)++;    //第一种方法
+//	//*x = *x + 1;  //2.第二种方法
+//}
+//int main()
+//{
+//	int num = 0;
+//	Add(&num);
+//	printf("sum=%d\n", num);
+//	Add(&num);
+//	printf("sum=%d\n", num);
+//	Add(&num);
+//	printf("sum=%d\n", num);
+//	return 0;
+//}
+// 学习知识：链式访问 也就是用其他函数的结果值作为结果使用
+//#include <stdio.h>
+//#include <string.h> //string.h是负责字符串的一系列库函数的头文件
+//int main()
+//{
+//	//int i = strlen("abcd");
+//	//printf("i=%d\n", i);
+//	//同理：我可以直接用strlen（“abcd”）作为输出结果替代
+//	printf("%d\n", strlen("abcd"));
+//	return 0;
+//}
+
+//学习知识：函数声明，函数调用，函数定义
+//例如：写一个求和的函数
+//#include <stdio.h>  //引用库函数，运用尖括号<>
+//#include "Add.h"    //引用其他头文件中的自定义函数时，应该用""双引号
+////函数声明
+///*int Add(int x, int y); *///其中x 和y可以不加 ，只需写明类型即可
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	//函数调用
+//	int sum = Add(a, b);
+//	printf("sum=%d\n", sum);
+//	return 0;
+//}
+//函数定义
+//int Add(int x, int y)
+//{
+//	int z = x + y;
+//	return z;
+//}
+
+//但是事实上函数声明和定义是分别再独立创建一个头文件和源文件来装的
+//目的是为了更方便工作时分工合作，避免了不能在同一个源文件中进行敲代码。
