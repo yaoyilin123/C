@@ -1192,3 +1192,129 @@ int main()
 
 //但是事实上函数声明和定义是分别再独立创建一个头文件和源文件来装的
 //目的是为了更方便工作时分工合作，避免了不能在同一个源文件中进行敲代码。
+
+//4.25 学习函数递归
+//自定义函数求字符串长度
+//1.常规
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main()
+//{
+//	char arr[] = "abc";
+//	int i = strlen(arr);
+//	printf("%d\n", i);
+//	return 0;
+//}
+//2.运用自定义函数
+//int my_strlen(char* arr)
+//{
+//	int p = 0;
+//	while (*arr != '\0')     
+//	{
+//		p++;          //数量++
+//		arr++;        //地址++；也就是数组的第二个元素的地址，以此类推。
+//	}
+//	return p;
+//}
+//int main()
+//{
+//	char arr[] = "abc";   //'a''b''c''\0'
+//	int i = my_strlen(arr); //传过去的是数组的第一个元素的地址
+//	printf("%d\n", i);
+//	return 0;
+//}
+//3.当要求不允许创建临时变量时，应该采用递归的方法。
+//
+//int my_strlen(char* arr)
+//{
+//	if (*arr != '\0')
+//		return 1 + my_strlen( arr+1); //++arr也可以 ，但是arr++就不行
+//	else
+//		return 0;
+//}
+//int main()
+//{
+//	char arr[] = "abc";   
+//	int i = my_strlen(arr); 
+//	printf("%d\n", i);
+//	return 0;
+//}
+//自定义函数求n的阶乘
+//#include <stdio.h>
+//int Fac1(int n)
+//{
+//	int i = 0;
+//	int ret = 1;
+//	for (i = 1; i <= n; i++)
+//	{
+//		ret = ret * i;
+//	}
+//	return ret;
+//}
+//int Fac2(int n)
+//{
+//	if (n < 2)          //在这种情况下，使用递归分类求n的阶乘很方便。
+//		return 1;      //（是在不考虑栈溢出的情况）
+//	else
+//		return n * Fac2(n - 1);
+//}
+//int main()
+//{
+//	int n = 0;
+//	int sum = 0;
+//	scanf_s("%d", &n);
+//	//sum=Fac1(n); //Fac1为普通的自定义函数
+//	sum = Fac2(n); //Fac2使用递归
+//	printf("%d的阶乘为%d", n,sum);
+//	return 0;
+//}
+
+//斐波那契数列(分别使用递归和循环)  1 1 2 3 5 8 13 21 34 55 ...
+//#include <stdio.h>
+//循环：
+//int Fib(int n)
+//{
+//	int a = 1;
+//	int b = 1;
+//	int c = 0;
+//	int i = 0;
+//	if (n <= 2)
+//		return 1;
+//	for(i=3;i<=n;i++) //此处调整也可以写成n--
+//	{
+//		c = a + b;
+//		a = b;
+//		b = c;
+//	}
+//	return c;
+	//也可以写成
+//	int a = 1;
+//	int b = 1;
+//	int c = 1;
+//	while (n>2)
+//	{
+//		c = a + b;
+//		a = b;
+//		b = c;
+//		n--;
+//	}
+//	return c;   //当n小于等于2时，直接返回1； 正好把c令成1，方便
+//} 
+//递归： 当n<=2时，就是1；当n>2时，就是fib(n-1)+fib(n-2)
+//int Fib(int n)
+//{
+//	if (n <= 2)
+//		return 1;
+//	else
+//		return Fib(n - 1) + Fib(n - 2);   //当数值较大时，计算量较大，运行速度慢
+//}                       //效率低，所以面对不同情况应该适当选择。
+//int main()
+//{
+//	int n = 0;
+//	int ret = 0;
+//	scanf_s("%d", &n);
+//	ret = Fib(n);
+//	printf("%d", ret);
+//	return 0;
+//}
