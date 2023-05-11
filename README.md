@@ -1607,3 +1607,76 @@ int main()
 //	*p = 20;        //此时访问该地址是不正确的。
 //	return 0;
 //} 
+
+//5.11日学习
+//一.应该如何规避野指针？
+//int main()
+//{
+//	int a = 0;     //1.指针初始化。 避免系统随机赋值导致地址不确定
+//	int* pa = &a;  
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int i = 0;
+//	int* p = arr;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	for (i = 0; i < sz; i++)   //2.应该保证指针不要越界 ，不要“过度”解引用指针。
+//	{
+//		*p = i;       //将数组中的每个元素改成有序数字
+//		p++;
+//	}
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int* pa = &a;
+//	*pa = 10;  //此时解引用，调出以后进行赋值。
+//	pa = NULL;   //3.若使用完毕，则可以将指针置为空。
+//	if (pa != NULL)   //4.指针在使用前 可以检查其有效性。
+//	{
+//		*pa = 20;     
+//	}
+//	printf("%d\n",a); //检验其结果，判断if语句是否执行
+//	return 0;
+//}
+//二.学习指针的用途 可以用来+-
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int b=&arr[9] - &arr[0];      
+//	printf("%d ", b);     //此处结果为9 表明了地址相加减时，结果为地址间元素的个数
+//	return 0;
+//}
+//三.运用指针来求字符串长度 -类似strlen函数
+//int my_strlen(char* arr)
+//{
+//	char* start = arr;
+//	char* end = arr;         //将第一个地址赋给end
+//	while (*end != '\0')     //再将其放进循环中，依次向后判断，直到找到'\0'结束。
+//	{
+//		end++;
+//	}
+//	return (end - start);    //利用指针相减得到其中间元素的个数
+//}
+//int main()
+//{
+//	char arr[] = "hello";    //   其中所存放的是 h e l l o \0
+//	int lenth = my_strlen(arr);
+//	printf("%d\n", lenth);
+//	return 0;
+//}
+//四.二级指针
+//int main()
+//{
+//	int a = 0;
+//	int* p = &a;  //此时，p为指针变量，既然是变量，就会存储在内存中，那么指针也有地址。
+//	int* *pp = &p;  //此时pp为二级指针，其存放的是p的地址
+//	return 0;
+//}
