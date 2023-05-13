@@ -1680,3 +1680,75 @@ int main()
 //	int* *pp = &p;  //此时pp为二级指针，其存放的是p的地址
 //	return 0;
 //}
+
+//5.13日学习 结构体
+#include <stdio.h>
+//1.结构体的创建与初始化
+//struct stu     //结构体类型
+//{
+//	char name[20];
+//	char sex[20];
+//	int age;
+//}s1,s2,s3;    //s1 s2 s3为全局变量，一般不采用全局变量。
+//注意分号不能丢， 这是第一种表达方式
+//typedef struct stu
+//{
+//	char name[20];
+//	char sex[20];
+//	int age;
+//}stu;  //typedef 将struct stu类型定义为stu表示（也可以用其他的名字）
+//int main()
+//{
+//	//struct stu s = {"张三","男",18}; //结构体的初始化
+//	stu s= { "张三","男",18 }; //由typedef定义过后，可以直接用定义后的名字来做类型使用。
+//	return 0;
+//}
+//2.指向
+//struct Stu
+//{
+//	char name[20];
+//	char sex[20];
+//	int age;
+//	char tele[12];  //手机号码11位，多余一位放'\0'
+//};
+//int main()
+//{
+//	struct Stu Y = { "李四","男",18,"18638866666" };
+//	printf("%s\n", Y.name);
+//	printf("%s\n", Y.sex);
+//	printf("%d\n", Y.age);
+//	printf("%s\n", Y.tele);   //用变量名.成员名 即可指向
+//	return 0;
+//}
+//3.结构体传参
+//struct Stu
+//{
+//	char name[20];
+//	char sex[20];
+//	int age;
+//	char tele[12];  
+//};
+//void print1(struct Stu Y)
+//{
+//	printf("name:%s\n", Y.name);
+//	printf("sex :%s\n", Y.sex);
+//	printf("age :%d\n", Y.age);
+//	printf("tele:%s\n", Y.tele); 
+//
+//}
+//void print2(struct Stu* Y)  //此时Y是结构体指针，存储的是地址
+//{
+//	printf("name:%s\n", Y->name);
+//	printf("sex :%s\n", Y->sex);
+//	printf("age :%d\n", Y->age);
+//	printf("tele:%s\n", Y->tele);
+//}
+//int main()
+//{
+//	struct Stu Y = { "李四","男",18,"18638866666" };
+//	print1(Y);  //将结构体传过去
+//	print2(&Y); //将结构体的地址传过去
+//	return 0;
+//}
+//print2中传址更好，结构体传过去需要重新开辟空间来存储“拷贝”的结构体，避免压栈过多。
+//局部变量 函数调用 均是在栈中存放。
